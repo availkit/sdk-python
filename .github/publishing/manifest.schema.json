@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Approved AvailKit SDK release manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "ecosystem",
+    "repository",
+    "package",
+    "version",
+    "tag",
+    "source_commit",
+    "artifacts"
+  ],
+  "properties": {
+    "schema": {
+      "const": 1
+    },
+    "ecosystem": {
+      "enum": [
+        "typescript",
+        "python",
+        "dotnet",
+        "ruby",
+        "rust"
+      ]
+    },
+    "repository": {
+      "enum": [
+        "availkit/sdk-typescript",
+        "availkit/sdk-python",
+        "availkit/sdk-dotnet",
+        "availkit/sdk-ruby",
+        "availkit/sdk-rust"
+      ]
+    },
+    "package": {
+      "enum": [
+        "@availkit/booking",
+        "availkit",
+        "AvailKit",
+        "availkit-sdk"
+      ]
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+      "maxLength": 46
+    },
+    "tag": {
+      "type": "string",
+      "pattern": "^v(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+      "maxLength": 47
+    },
+    "source_commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "role",
+          "filename",
+          "sha256",
+          "size"
+        ],
+        "properties": {
+          "role": {
+            "enum": [
+              "package",
+              "wheel",
+              "sdist",
+              "cargo-metadata"
+            ]
+          },
+          "filename": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "maxLength": 128
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 16777216
+          }
+        }
+      }
+    }
+  }
+}

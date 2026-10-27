@@ -1,0 +1,16 @@
+node_modules/
+dist/
+artifacts/
+build/
+target/
+bin/
+obj/
+.build/
+.venv/
+__pycache__/
+*.egg-info/
+*.pyc
+.local/
+private/
+.*-test-*/
+.DS_Store

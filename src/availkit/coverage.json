@@ -1,0 +1,514 @@
+{
+  "version": "0.2.0",
+  "openapi_sha256": "6e126d6856c9d07f7af49137c453f7fba0d715fb4e957937fe47cb4bc8d55aa5",
+  "workspace_operations": 34,
+  "public_operations": 7,
+  "operations": {
+    "createResource": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "POST",
+      "path": "/v1/workspaces/{workspaceId}/resources",
+      "sdk": "create_resource",
+      "replay": "none"
+    },
+    "listResources": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "GET",
+      "path": "/v1/workspaces/{workspaceId}/resources",
+      "sdk": "list_resources",
+      "replay": "none"
+    },
+    "setHours": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "PUT",
+      "path": "/v1/workspaces/{workspaceId}/resources/{resourceId}/hours",
+      "sdk": "replace_hours",
+      "replay": "none"
+    },
+    "getHours": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "GET",
+      "path": "/v1/workspaces/{workspaceId}/resources/{resourceId}/hours",
+      "sdk": "get_hours",
+      "replay": "none"
+    },
+    "createOffering": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "POST",
+      "path": "/v1/workspaces/{workspaceId}/offerings",
+      "sdk": "create_offering",
+      "replay": "none"
+    },
+    "listOfferings": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "GET",
+      "path": "/v1/workspaces/{workspaceId}/offerings",
+      "sdk": "list_offerings",
+      "replay": "none"
+    },
+    "availability": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "GET",
+      "path": "/v1/workspaces/{workspaceId}/availability",
+      "sdk": "availability",
+      "replay": "none"
+    },
+    "book": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "POST",
+      "path": "/v1/workspaces/{workspaceId}/bookings",
+      "sdk": "book",
+      "replay": "explicit-original-intent-only"
+    },
+    "listBookings": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "GET",
+      "path": "/v1/workspaces/{workspaceId}/bookings",
+      "sdk": "list_bookings",
+      "replay": "none"
+    },
+    "cancel": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "POST",
+      "path": "/v1/workspaces/{workspaceId}/bookings/{bookingId}/cancel",
+      "sdk": "cancel",
+      "replay": "explicit-original-intent-only"
+    },
+    "events": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "GET",
+      "path": "/v1/workspaces/{workspaceId}/events",
+      "sdk": "events",
+      "replay": "none"
+    },
+    "getResource": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "GET",
+      "path": "/v1/workspaces/{workspaceId}/resources/{resourceId}",
+      "sdk": "get_resource",
+      "replay": "none"
+    },
+    "updateResource": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "PUT",
+      "path": "/v1/workspaces/{workspaceId}/resources/{resourceId}",
+      "sdk": "replace_resource",
+      "replay": "none"
+    },
+    "getOffering": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "GET",
+      "path": "/v1/workspaces/{workspaceId}/offerings/{offeringId}",
+      "sdk": "get_offering",
+      "replay": "none"
+    },
+    "updateOffering": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "PUT",
+      "path": "/v1/workspaces/{workspaceId}/offerings/{offeringId}",
+      "sdk": "replace_offering",
+      "replay": "none"
+    },
+    "getBooking": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "GET",
+      "path": "/v1/workspaces/{workspaceId}/bookings/{bookingId}",
+      "sdk": "get_booking",
+      "replay": "none"
+    },
+    "createWebhook": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "POST",
+      "path": "/v1/workspaces/{workspaceId}/webhooks",
+      "sdk": "create_webhook",
+      "replay": "none"
+    },
+    "listWebhooks": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "GET",
+      "path": "/v1/workspaces/{workspaceId}/webhooks",
+      "sdk": "list_webhooks",
+      "replay": "none"
+    },
+    "disableWebhook": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "POST",
+      "path": "/v1/workspaces/{workspaceId}/webhooks/{subscriptionId}/disable",
+      "sdk": "disable_webhook",
+      "replay": "none"
+    },
+    "listWebhookDeliveries": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "GET",
+      "path": "/v1/workspaces/{workspaceId}/webhooks/{subscriptionId}/deliveries",
+      "sdk": "list_webhook_deliveries",
+      "replay": "none"
+    },
+    "getUsage": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "GET",
+      "path": "/v1/workspaces/{workspaceId}/usage",
+      "sdk": "get_usage",
+      "replay": "none"
+    },
+    "rescheduleBooking": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "POST",
+      "path": "/v1/workspaces/{workspaceId}/bookings/{bookingId}/reschedule",
+      "sdk": "reschedule_booking",
+      "replay": "explicit-original-intent-only"
+    },
+    "archiveResource": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "POST",
+      "path": "/v1/workspaces/{workspaceId}/resources/{resourceId}/archive",
+      "sdk": "archive_resource",
+      "replay": "none"
+    },
+    "archiveOffering": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "POST",
+      "path": "/v1/workspaces/{workspaceId}/offerings/{offeringId}/archive",
+      "sdk": "archive_offering",
+      "replay": "none"
+    },
+    "pruneHistory": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "POST",
+      "path": "/v1/workspaces/{workspaceId}/maintenance/history",
+      "sdk": "prune_history",
+      "replay": "none"
+    },
+    "createCustomer": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "POST",
+      "path": "/v1/workspaces/{workspaceId}/customers",
+      "sdk": "create_customer",
+      "replay": "none"
+    },
+    "listCustomers": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "GET",
+      "path": "/v1/workspaces/{workspaceId}/customers",
+      "sdk": "list_customers",
+      "replay": "none"
+    },
+    "getCustomer": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "GET",
+      "path": "/v1/workspaces/{workspaceId}/customers/{customerId}",
+      "sdk": "get_customer",
+      "replay": "none"
+    },
+    "replaceCustomer": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "PUT",
+      "path": "/v1/workspaces/{workspaceId}/customers/{customerId}",
+      "sdk": "replace_customer",
+      "replay": "none"
+    },
+    "archiveCustomer": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "POST",
+      "path": "/v1/workspaces/{workspaceId}/customers/{customerId}/archive",
+      "sdk": "archive_customer",
+      "replay": "none"
+    },
+    "eraseCustomer": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "POST",
+      "path": "/v1/workspaces/{workspaceId}/customers/{customerId}/erase",
+      "sdk": "erase_customer",
+      "replay": "none"
+    },
+    "pruneExpiredReplays": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "POST",
+      "path": "/v1/workspaces/{workspaceId}/maintenance/expired-replays",
+      "sdk": "prune_expired_replays",
+      "replay": "none"
+    },
+    "human_browser": {
+      "status": "browser-account-session-only",
+      "method": "GET",
+      "path": "/v1/human/browser"
+    },
+    "human_session": {
+      "status": "browser-account-session-only",
+      "method": "GET",
+      "path": "/v1/human/session"
+    },
+    "human_credentials": {
+      "status": "browser-account-session-only",
+      "method": "GET",
+      "path": "/v1/human/credentials"
+    },
+    "human_keys": {
+      "status": "browser-account-session-only",
+      "method": "GET",
+      "path": "/v1/human/keys"
+    },
+    "human_issue_key": {
+      "status": "browser-account-session-only",
+      "method": "POST",
+      "path": "/v1/human/keys"
+    },
+    "human_enroll_start": {
+      "status": "browser-account-session-only",
+      "method": "POST",
+      "path": "/v1/human/enroll/start"
+    },
+    "human_enroll_finish": {
+      "status": "browser-account-session-only",
+      "method": "POST",
+      "path": "/v1/human/enroll/finish"
+    },
+    "human_login_start": {
+      "status": "browser-account-session-only",
+      "method": "POST",
+      "path": "/v1/human/login/start"
+    },
+    "human_login_prove": {
+      "status": "browser-account-session-only",
+      "method": "POST",
+      "path": "/v1/human/login/prove"
+    },
+    "human_login_finish": {
+      "status": "browser-account-session-only",
+      "method": "POST",
+      "path": "/v1/human/login/finish"
+    },
+    "human_add_start": {
+      "status": "browser-account-session-only",
+      "method": "POST",
+      "path": "/v1/human/add/start"
+    },
+    "human_add_finish": {
+      "status": "browser-account-session-only",
+      "method": "POST",
+      "path": "/v1/human/add/finish"
+    },
+    "human_reauth_start": {
+      "status": "browser-account-session-only",
+      "method": "POST",
+      "path": "/v1/human/reauth/start"
+    },
+    "human_reauth_finish": {
+      "status": "browser-account-session-only",
+      "method": "POST",
+      "path": "/v1/human/reauth/finish"
+    },
+    "human_credentials_remove": {
+      "status": "browser-account-session-only",
+      "method": "POST",
+      "path": "/v1/human/credentials/remove"
+    },
+    "human_recovery_codes": {
+      "status": "browser-account-session-only",
+      "method": "POST",
+      "path": "/v1/human/recovery/codes"
+    },
+    "human_recovery_start": {
+      "status": "disabled-deferred",
+      "method": "POST",
+      "path": "/v1/human/recovery/start"
+    },
+    "human_recovery_finish": {
+      "status": "disabled-deferred",
+      "method": "POST",
+      "path": "/v1/human/recovery/finish"
+    },
+    "human_logout": {
+      "status": "browser-account-session-only",
+      "method": "POST",
+      "path": "/v1/human/logout"
+    },
+    "human_logout-all": {
+      "status": "browser-account-session-only",
+      "method": "POST",
+      "path": "/v1/human/logout-all"
+    },
+    "human_bootstrap": {
+      "status": "browser-account-session-only",
+      "method": "POST",
+      "path": "/v1/human/bootstrap"
+    },
+    "human_keys_revoke": {
+      "status": "browser-account-session-only",
+      "method": "POST",
+      "path": "/v1/human/keys/revoke"
+    },
+    "human_members_list": {
+      "status": "browser-account-session-only",
+      "method": "POST",
+      "path": "/v1/human/members/list"
+    },
+    "human_members_grant": {
+      "status": "browser-account-session-only",
+      "method": "POST",
+      "path": "/v1/human/members/grant"
+    },
+    "human_members_narrow": {
+      "status": "browser-account-session-only",
+      "method": "POST",
+      "path": "/v1/human/members/narrow"
+    },
+    "human_members_remove": {
+      "status": "browser-account-session-only",
+      "method": "POST",
+      "path": "/v1/human/members/remove"
+    },
+    "human_privacy_export": {
+      "status": "browser-account-session-only",
+      "method": "POST",
+      "path": "/v1/human/privacy/export"
+    },
+    "human_privacy_erase": {
+      "status": "browser-account-session-only",
+      "method": "POST",
+      "path": "/v1/human/privacy/erase"
+    },
+    "human_privacy_spool_prune": {
+      "status": "browser-account-session-only",
+      "method": "POST",
+      "path": "/v1/human/privacy/spool-prune"
+    },
+    "getPublicPage": {
+      "status": "supported",
+      "client": "PublicBookingClient",
+      "method": "GET",
+      "path": "/v1/public/pages/{pageId}",
+      "sdk": "get_page",
+      "replay": "none"
+    },
+    "listPublicOfferings": {
+      "status": "supported",
+      "client": "PublicBookingClient",
+      "method": "GET",
+      "path": "/v1/public/pages/{pageId}/offerings",
+      "sdk": "list_offerings",
+      "replay": "none"
+    },
+    "publicAvailability": {
+      "status": "supported",
+      "client": "PublicBookingClient",
+      "method": "GET",
+      "path": "/v1/public/pages/{pageId}/availability",
+      "sdk": "availability",
+      "replay": "none"
+    },
+    "bookPublic": {
+      "status": "supported",
+      "client": "PublicBookingClient",
+      "method": "POST",
+      "path": "/v1/public/pages/{pageId}/bookings",
+      "sdk": "book",
+      "replay": "explicit-original-intent-only"
+    },
+    "getPublicBooking": {
+      "status": "supported",
+      "client": "PublicBookingClient",
+      "method": "GET",
+      "path": "/v1/public/pages/{pageId}/bookings/{bookingId}",
+      "sdk": "get_booking",
+      "replay": "none"
+    },
+    "cancelPublicBooking": {
+      "status": "supported",
+      "client": "PublicBookingClient",
+      "method": "POST",
+      "path": "/v1/public/pages/{pageId}/bookings/{bookingId}/cancel",
+      "sdk": "cancel",
+      "replay": "explicit-original-intent-only"
+    },
+    "reschedulePublicBooking": {
+      "status": "supported",
+      "client": "PublicBookingClient",
+      "method": "POST",
+      "path": "/v1/public/pages/{pageId}/bookings/{bookingId}/reschedule",
+      "sdk": "reschedule",
+      "replay": "explicit-original-intent-only"
+    },
+    "getBookingPage": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "GET",
+      "path": "/v1/workspaces/{workspaceId}/booking-page",
+      "sdk": "get_booking_page",
+      "replay": "none"
+    },
+    "replaceBookingPage": {
+      "status": "supported",
+      "client": "AvailKitClient",
+      "method": "PUT",
+      "path": "/v1/workspaces/{workspaceId}/booking-page",
+      "sdk": "replace_booking_page",
+      "replay": "none"
+    },
+    "live": {
+      "status": "operator-http",
+      "method": "GET",
+      "path": "/live"
+    },
+    "ready": {
+      "status": "operator-http",
+      "method": "GET",
+      "path": "/ready"
+    }
+  },
+  "supported_projection_sha256": "62ed19c668e35d7b1d4d706cbd1812e245dca01e89d4c24cf59fbf4406264740",
+  "unsupported_optional": {
+    "recovery_v2_profile": {
+      "method": "GET",
+      "path": "/v2/human/recovery/profile",
+      "reason": "separate same-origin browser recovery"
+    },
+    "recovery_v2_start": {
+      "method": "POST",
+      "path": "/v2/human/recovery/start",
+      "reason": "separate same-origin browser recovery"
+    },
+    "recovery_v2_finish": {
+      "method": "POST",
+      "path": "/v2/human/recovery/finish",
+      "reason": "separate same-origin browser recovery"
+    },
+    "getBusinessExportPage": {
+      "method": "GET",
+      "path": "/v1/workspaces/{workspaceId}/export",
+      "reason": "unsupported optional business export"
+    }
+  }
+}

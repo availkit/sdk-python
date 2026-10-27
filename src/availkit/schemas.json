@@ -1,0 +1,1164 @@
+{
+  "ResourceInput": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      },
+      "timeZone": {
+        "type": "string"
+      },
+      "capacity": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 1000
+      }
+    },
+    "required": [
+      "name",
+      "timeZone",
+      "capacity"
+    ],
+    "additionalProperties": false
+  },
+  "Resource": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      },
+      "timeZone": {
+        "type": "string"
+      },
+      "capacity": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 1000
+      },
+      "archived": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "id",
+      "name",
+      "timeZone",
+      "capacity",
+      "archived"
+    ],
+    "additionalProperties": false
+  },
+  "ResourcePage": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "items",
+      "nextAfter"
+    ],
+    "properties": {
+      "items": {
+        "type": "array",
+        "maxItems": 100,
+        "items": {
+          "$ref": "#/components/schemas/Resource"
+        }
+      },
+      "nextAfter": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Last emitted ID only when more results remain; otherwise null."
+      }
+    }
+  },
+  "Hours": {
+    "type": "object",
+    "properties": {
+      "windows": {
+        "type": "array",
+        "maxItems": 28,
+        "items": {
+          "type": "object",
+          "properties": {
+            "weekday": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 7
+            },
+            "start": {
+              "type": "string",
+              "pattern": "^[0-2][0-9]:[0-5][0-9]$"
+            },
+            "end": {
+              "type": "string",
+              "pattern": "^[0-2][0-9]:[0-5][0-9]$"
+            }
+          },
+          "required": [
+            "weekday",
+            "start",
+            "end"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "windows"
+    ],
+    "additionalProperties": false
+  },
+  "OfferingInput": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      },
+      "resourceId": {
+        "type": "string"
+      },
+      "durationMinutes": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 1440
+      }
+    },
+    "required": [
+      "name",
+      "resourceId",
+      "durationMinutes"
+    ],
+    "additionalProperties": false
+  },
+  "Offering": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      },
+      "resourceId": {
+        "type": "string"
+      },
+      "durationMinutes": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 1440
+      },
+      "archived": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "id",
+      "name",
+      "resourceId",
+      "durationMinutes",
+      "archived"
+    ],
+    "additionalProperties": false
+  },
+  "OfferingPage": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "items",
+      "nextAfter"
+    ],
+    "properties": {
+      "items": {
+        "type": "array",
+        "maxItems": 100,
+        "items": {
+          "$ref": "#/components/schemas/Offering"
+        }
+      },
+      "nextAfter": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Last emitted ID only when more results remain; otherwise null."
+      }
+    }
+  },
+  "Availability": {
+    "type": "object",
+    "properties": {
+      "slots": {
+        "type": "array",
+        "maxItems": 256,
+        "items": {
+          "type": "object",
+          "properties": {
+            "start": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "end": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "remainingCapacity": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "required": [
+            "start",
+            "end",
+            "remainingCapacity"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "slots"
+    ],
+    "additionalProperties": false
+  },
+  "BookingInput": {
+    "type": "object",
+    "properties": {
+      "offeringId": {
+        "type": "string"
+      },
+      "start": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "customerId": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{32}$",
+        "description": "Optional existing active contact in this exact environment. Explicit null invalid; requires BOOK+MANAGE. Normalized linked ID participates in idempotency intent."
+      }
+    },
+    "required": [
+      "offeringId",
+      "start"
+    ],
+    "additionalProperties": false
+  },
+  "Booking": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string"
+      },
+      "offeringId": {
+        "type": "string"
+      },
+      "resourceId": {
+        "type": "string"
+      },
+      "start": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "end": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "status": {
+        "enum": [
+          "confirmed",
+          "cancelled"
+        ]
+      },
+      "customerId": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{32}$",
+        "description": "Present only when linked, including retained erased contact links; never contact values."
+      }
+    },
+    "required": [
+      "id",
+      "offeringId",
+      "resourceId",
+      "start",
+      "end",
+      "status"
+    ],
+    "additionalProperties": false
+  },
+  "BookingPage": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "items",
+      "nextAfter"
+    ],
+    "properties": {
+      "items": {
+        "type": "array",
+        "maxItems": 100,
+        "items": {
+          "$ref": "#/components/schemas/Booking"
+        }
+      },
+      "nextAfter": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Last emitted ID only when more results remain; otherwise null."
+      }
+    }
+  },
+  "Events": {
+    "type": "object",
+    "properties": {
+      "events": {
+        "type": "array",
+        "maxItems": 100,
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "sequence": {
+              "type": "integer"
+            },
+            "type": {
+              "enum": [
+                "booking.created",
+                "booking.cancelled",
+                "booking.rescheduled"
+              ]
+            },
+            "bookingId": {
+              "type": "string"
+            },
+            "occurredAt": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": [
+            "id",
+            "sequence",
+            "type",
+            "bookingId",
+            "occurredAt"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "nextAfter": {
+        "type": "integer"
+      },
+      "retentionFloor": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 9007199254740991
+      },
+      "highWater": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 9007199254740991
+      }
+    },
+    "required": [
+      "events",
+      "nextAfter",
+      "retentionFloor",
+      "highWater"
+    ],
+    "additionalProperties": false
+  },
+  "WebhookCreate": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "url"
+    ],
+    "properties": {
+      "url": {
+        "type": "string",
+        "format": "uri",
+        "maxLength": 2048,
+        "description": "HTTPS hostname, port443; no IP, userinfo, query or fragment. Syntactic admission only; transport must validate DNS/address/redirect policy."
+      }
+    }
+  },
+  "WebhookCreated": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "id",
+      "url",
+      "enabled",
+      "createdAt",
+      "signingSecret"
+    ],
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{32}$"
+      },
+      "url": {
+        "type": "string"
+      },
+      "enabled": {
+        "type": "boolean"
+      },
+      "createdAt": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "signingSecret": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9_-]{43}$",
+        "description": "One-time base64url encoding of32 random bytes; response only, no replay storage."
+      }
+    }
+  },
+  "WebhookPage": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "items",
+      "nextAfter"
+    ],
+    "properties": {
+      "items": {
+        "type": "array",
+        "maxItems": 100,
+        "items": {
+          "$ref": "#/components/schemas/Webhook"
+        }
+      },
+      "nextAfter": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    }
+  },
+  "Webhook": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "id",
+      "url",
+      "enabled",
+      "createdAt"
+    ],
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{32}$"
+      },
+      "url": {
+        "type": "string"
+      },
+      "enabled": {
+        "type": "boolean"
+      },
+      "createdAt": {
+        "type": "string",
+        "format": "date-time"
+      }
+    }
+  },
+  "WebhookDisable": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [],
+    "properties": {}
+  },
+  "WebhookDeliveryPage": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "items",
+      "nextAfter"
+    ],
+    "properties": {
+      "items": {
+        "type": "array",
+        "maxItems": 100,
+        "items": {
+          "$ref": "#/components/schemas/WebhookDelivery"
+        }
+      },
+      "nextAfter": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    }
+  },
+  "WebhookDelivery": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "id",
+      "subscriptionId",
+      "eventId",
+      "state",
+      "createdAt",
+      "attempts",
+      "maxAttempts",
+      "nextAttemptAt",
+      "leaseExpiresAt",
+      "lastAttemptAt",
+      "lastOutcome",
+      "lastHttpStatus"
+    ],
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{32}$"
+      },
+      "subscriptionId": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{32}$"
+      },
+      "eventId": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{32}$"
+      },
+      "state": {
+        "type": "string",
+        "enum": [
+          "pending",
+          "suppressed",
+          "leased",
+          "sending",
+          "delivered",
+          "dead"
+        ]
+      },
+      "createdAt": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "attempts": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 5
+      },
+      "maxAttempts": {
+        "type": "integer",
+        "const": 5
+      },
+      "nextAttemptAt": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "format": "date-time"
+      },
+      "leaseExpiresAt": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "format": "date-time"
+      },
+      "lastAttemptAt": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "format": "date-time"
+      },
+      "lastOutcome": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "enum": [
+          null,
+          "admitted_unknown",
+          "claim_expired",
+          "lease_expired_unknown",
+          "disabled_unknown",
+          "not_attempted",
+          "invalid_target",
+          "invalid_delivery",
+          "address_denied",
+          "transport_unknown",
+          "deadline_unknown",
+          "http_drained",
+          "http_body_failed",
+          "http_body_deadline",
+          "http_body_too_large"
+        ]
+      },
+      "lastHttpStatus": {
+        "type": [
+          "integer",
+          "null"
+        ],
+        "minimum": 100,
+        "maximum": 599
+      }
+    },
+    "description": "M4 additive attempt summary; fixed safe codes only, no lease token/payload/secret/target. Suppressed forbids future dispatch but may have an unknown admitted attempt. See m4-delivery.md."
+  },
+  "Usage": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "asOf",
+      "period",
+      "counters"
+    ],
+    "properties": {
+      "asOf": {
+        "type": "string",
+        "format": "date-time",
+        "pattern": "Z$"
+      },
+      "period": {
+        "$ref": "#/components/schemas/UsagePeriod"
+      },
+      "counters": {
+        "$ref": "#/components/schemas/UsageCounters"
+      }
+    }
+  },
+  "UsagePeriod": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "start",
+      "end"
+    ],
+    "properties": {
+      "start": {
+        "type": "string",
+        "format": "date-time",
+        "pattern": "Z$"
+      },
+      "end": {
+        "type": "string",
+        "format": "date-time",
+        "pattern": "Z$"
+      }
+    },
+    "description": "Enclosing UTC calendar month, half-open: start <= asOf < end."
+  },
+  "UsageCounters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "monthlyBookingCreates",
+      "catalogObjects",
+      "bookingRecords",
+      "committedEvents",
+      "webhookSubscriptions",
+      "webhookDeliveries",
+      "liveReplays",
+      "customerRecords"
+    ],
+    "properties": {
+      "monthlyBookingCreates": {
+        "$ref": "#/components/schemas/UsageCounter",
+        "description": "Committed M1 creates in the UTC month; replay, failure and cancellation do not consume/refund. Limit: current monthly_creates entitlement."
+      },
+      "catalogObjects": {
+        "$ref": "#/components/schemas/UsageCounter",
+        "description": "Retained M1 resources + offerings; hours are excluded. Limit: min(catalog entitlement,1000)."
+      },
+      "bookingRecords": {
+        "$ref": "#/components/schemas/UsageCounter",
+        "description": "All retained bookings including cancelled; limit10000."
+      },
+      "committedEvents": {
+        "$ref": "#/components/schemas/UsageCounter",
+        "description": "Consumed retained event sequence budget; limit20000; no pruning/refund."
+      },
+      "webhookSubscriptions": {
+        "$ref": "#/components/schemas/UsageCounter",
+        "description": "All retained subscriptions including disabled; limit16."
+      },
+      "webhookDeliveries": {
+        "$ref": "#/components/schemas/UsageCounter",
+        "description": "All retained queue rows including terminal/suppressed; limit4096. Queued does not mean delivered."
+      },
+      "liveReplays": {
+        "$ref": "#/components/schemas/UsageCounter",
+        "description": "Only entries with expires_ms > asOf; limit4096. Existing24h per-record expiry; read never deletes expired rows."
+      },
+      "customerRecords": {
+        "$ref": "#/components/schemas/UsageCounter"
+      }
+    }
+  },
+  "UsageCounter": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "used",
+      "limit",
+      "remaining"
+    ],
+    "properties": {
+      "used": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 9007199254740991
+      },
+      "limit": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 9007199254740991
+      },
+      "remaining": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 9007199254740991
+      }
+    },
+    "description": "remaining=max(0,limit-used); advisory, not a reservation."
+  },
+  "RescheduleInput": {
+    "type": "object",
+    "properties": {
+      "expectedStart": {
+        "type": "string",
+        "format": "date-time",
+        "description": "UTC RFC3339 instant with millisecond precision or coarser"
+      },
+      "start": {
+        "type": "string",
+        "format": "date-time",
+        "description": "UTC RFC3339 instant with millisecond precision or coarser"
+      }
+    },
+    "required": [
+      "expectedStart",
+      "start"
+    ],
+    "additionalProperties": false
+  },
+  "HistoryPruneInput": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "kind",
+      "limit"
+    ],
+    "properties": {
+      "kind": {
+        "enum": [
+          "deliveries",
+          "events",
+          "bookings"
+        ]
+      },
+      "limit": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 128
+      }
+    }
+  },
+  "HistoryPruneResult": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "asOf",
+      "cutoff",
+      "deleted",
+      "hasMore"
+    ],
+    "properties": {
+      "asOf": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "cutoff": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "deleted": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 128
+      },
+      "hasMore": {
+        "type": "boolean"
+      }
+    }
+  },
+  "CustomerInput": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "displayName"
+    ],
+    "properties": {
+      "displayName": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      },
+      "email": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "maxLength": 254
+      },
+      "phone": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "maxLength": 32
+      }
+    }
+  },
+  "Customer": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "id",
+      "displayName",
+      "email",
+      "phone",
+      "archived"
+    ],
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{32}$"
+      },
+      "displayName": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      },
+      "email": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "maxLength": 254
+      },
+      "phone": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "maxLength": 32
+      },
+      "archived": {
+        "type": "boolean"
+      },
+      "erased": {
+        "const": true
+      }
+    }
+  },
+  "CustomerPage": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "items",
+      "nextAfter"
+    ],
+    "properties": {
+      "items": {
+        "type": "array",
+        "maxItems": 100,
+        "items": {
+          "$ref": "#/components/schemas/Customer"
+        }
+      },
+      "nextAfter": {
+        "anyOf": [
+          {
+            "type": "string",
+            "pattern": "^[0-9a-f]{32}$"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    }
+  },
+  "Empty": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  },
+  "CustomerErased": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "id",
+      "erased"
+    ],
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{32}$"
+      },
+      "erased": {
+        "const": true
+      }
+    }
+  },
+  "MaintenanceInput": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "limit"
+    ],
+    "properties": {
+      "limit": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 128
+      }
+    }
+  },
+  "MaintenanceResult": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "asOf",
+      "deleted",
+      "hasMore"
+    ],
+    "properties": {
+      "asOf": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "deleted": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 128
+      },
+      "hasMore": {
+        "type": "boolean"
+      }
+    }
+  },
+  "PublicPage": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{32}$"
+      },
+      "title": {
+        "type": "string"
+      },
+      "environment": {
+        "type": "string",
+        "enum": [
+          "test",
+          "live"
+        ]
+      },
+      "emailNotifications": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "id",
+      "title",
+      "environment"
+    ]
+  },
+  "PublicOfferingPage": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "items": {
+        "type": "array",
+        "maxItems": 100,
+        "items": {
+          "$ref": "#/components/schemas/PublicOffering"
+        }
+      },
+      "nextAfter": {
+        "anyOf": [
+          {
+            "type": "string",
+            "pattern": "^[0-9a-f]{32}$"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    },
+    "required": [
+      "items",
+      "nextAfter"
+    ]
+  },
+  "PublicOffering": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{32}$"
+      },
+      "name": {
+        "type": "string"
+      },
+      "durationMinutes": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 1440
+      },
+      "timeZone": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "id",
+      "name",
+      "durationMinutes",
+      "timeZone"
+    ]
+  },
+  "PublicBookingInput": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "offeringId": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{32}$"
+      },
+      "start": {
+        "type": "string",
+        "format": "date-time",
+        "pattern": "Z$"
+      },
+      "contact": {
+        "$ref": "#/components/schemas/CustomerInput"
+      }
+    },
+    "required": [
+      "offeringId",
+      "start",
+      "contact"
+    ]
+  },
+  "PublicBooking": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{32}$"
+      },
+      "start": {
+        "type": "string",
+        "format": "date-time",
+        "pattern": "Z$"
+      },
+      "end": {
+        "type": "string",
+        "format": "date-time",
+        "pattern": "Z$"
+      },
+      "status": {
+        "type": "string",
+        "enum": [
+          "confirmed",
+          "cancelled"
+        ]
+      },
+      "offering": {
+        "$ref": "#/components/schemas/PublicOffering"
+      },
+      "page": {
+        "$ref": "#/components/schemas/PublicPage"
+      },
+      "pageEnabled": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "id",
+      "start",
+      "end",
+      "status",
+      "offering",
+      "page",
+      "pageEnabled"
+    ]
+  },
+  "BookingPageSettings": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "pageId": {
+        "anyOf": [
+          {
+            "type": "string",
+            "pattern": "^[0-9a-f]{32}$"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "title": {
+        "type": "string"
+      },
+      "enabled": {
+        "type": "boolean"
+      },
+      "needsRepublish": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "pageId",
+      "title",
+      "enabled",
+      "needsRepublish"
+    ]
+  },
+  "BookingPageInput": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "title": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      },
+      "enabled": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "title",
+      "enabled"
+    ]
+  }
+}

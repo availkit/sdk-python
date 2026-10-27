@@ -1,0 +1,422 @@
+{
+  "createResource": {
+    "method": "POST",
+    "path": "/v1/workspaces/{workspaceId}/resources",
+    "input": {
+      "$ref": "#/components/schemas/ResourceInput"
+    },
+    "status": 201,
+    "output": {
+      "$ref": "#/components/schemas/Resource"
+    }
+  },
+  "listResources": {
+    "method": "GET",
+    "path": "/v1/workspaces/{workspaceId}/resources",
+    "input": null,
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/ResourcePage"
+    }
+  },
+  "setHours": {
+    "method": "PUT",
+    "path": "/v1/workspaces/{workspaceId}/resources/{resourceId}/hours",
+    "input": {
+      "$ref": "#/components/schemas/Hours"
+    },
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/Hours"
+    }
+  },
+  "getHours": {
+    "method": "GET",
+    "path": "/v1/workspaces/{workspaceId}/resources/{resourceId}/hours",
+    "input": null,
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/Hours"
+    }
+  },
+  "createOffering": {
+    "method": "POST",
+    "path": "/v1/workspaces/{workspaceId}/offerings",
+    "input": {
+      "$ref": "#/components/schemas/OfferingInput"
+    },
+    "status": 201,
+    "output": {
+      "$ref": "#/components/schemas/Offering"
+    }
+  },
+  "listOfferings": {
+    "method": "GET",
+    "path": "/v1/workspaces/{workspaceId}/offerings",
+    "input": null,
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/OfferingPage"
+    }
+  },
+  "availability": {
+    "method": "GET",
+    "path": "/v1/workspaces/{workspaceId}/availability",
+    "input": null,
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/Availability"
+    }
+  },
+  "book": {
+    "method": "POST",
+    "path": "/v1/workspaces/{workspaceId}/bookings",
+    "input": {
+      "$ref": "#/components/schemas/BookingInput"
+    },
+    "status": 201,
+    "output": {
+      "$ref": "#/components/schemas/Booking"
+    }
+  },
+  "listBookings": {
+    "method": "GET",
+    "path": "/v1/workspaces/{workspaceId}/bookings",
+    "input": null,
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/BookingPage"
+    }
+  },
+  "cancel": {
+    "method": "POST",
+    "path": "/v1/workspaces/{workspaceId}/bookings/{bookingId}/cancel",
+    "input": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/Booking"
+    }
+  },
+  "events": {
+    "method": "GET",
+    "path": "/v1/workspaces/{workspaceId}/events",
+    "input": null,
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/Events"
+    }
+  },
+  "getResource": {
+    "method": "GET",
+    "path": "/v1/workspaces/{workspaceId}/resources/{resourceId}",
+    "input": null,
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/Resource"
+    }
+  },
+  "updateResource": {
+    "method": "PUT",
+    "path": "/v1/workspaces/{workspaceId}/resources/{resourceId}",
+    "input": {
+      "$ref": "#/components/schemas/ResourceInput"
+    },
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/Resource"
+    }
+  },
+  "getOffering": {
+    "method": "GET",
+    "path": "/v1/workspaces/{workspaceId}/offerings/{offeringId}",
+    "input": null,
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/Offering"
+    }
+  },
+  "updateOffering": {
+    "method": "PUT",
+    "path": "/v1/workspaces/{workspaceId}/offerings/{offeringId}",
+    "input": {
+      "$ref": "#/components/schemas/OfferingInput"
+    },
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/Offering"
+    }
+  },
+  "getBooking": {
+    "method": "GET",
+    "path": "/v1/workspaces/{workspaceId}/bookings/{bookingId}",
+    "input": null,
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/Booking"
+    }
+  },
+  "createWebhook": {
+    "method": "POST",
+    "path": "/v1/workspaces/{workspaceId}/webhooks",
+    "input": {
+      "$ref": "#/components/schemas/WebhookCreate"
+    },
+    "status": 201,
+    "output": {
+      "$ref": "#/components/schemas/WebhookCreated"
+    }
+  },
+  "listWebhooks": {
+    "method": "GET",
+    "path": "/v1/workspaces/{workspaceId}/webhooks",
+    "input": null,
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/WebhookPage"
+    }
+  },
+  "disableWebhook": {
+    "method": "POST",
+    "path": "/v1/workspaces/{workspaceId}/webhooks/{subscriptionId}/disable",
+    "input": {
+      "$ref": "#/components/schemas/WebhookDisable"
+    },
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/Webhook"
+    }
+  },
+  "listWebhookDeliveries": {
+    "method": "GET",
+    "path": "/v1/workspaces/{workspaceId}/webhooks/{subscriptionId}/deliveries",
+    "input": null,
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/WebhookDeliveryPage"
+    }
+  },
+  "getUsage": {
+    "method": "GET",
+    "path": "/v1/workspaces/{workspaceId}/usage",
+    "input": null,
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/Usage"
+    }
+  },
+  "rescheduleBooking": {
+    "method": "POST",
+    "path": "/v1/workspaces/{workspaceId}/bookings/{bookingId}/reschedule",
+    "input": {
+      "$ref": "#/components/schemas/RescheduleInput"
+    },
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/Booking"
+    }
+  },
+  "archiveResource": {
+    "method": "POST",
+    "path": "/v1/workspaces/{workspaceId}/resources/{resourceId}/archive",
+    "input": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    },
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/Resource"
+    }
+  },
+  "archiveOffering": {
+    "method": "POST",
+    "path": "/v1/workspaces/{workspaceId}/offerings/{offeringId}/archive",
+    "input": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    },
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/Offering"
+    }
+  },
+  "pruneHistory": {
+    "method": "POST",
+    "path": "/v1/workspaces/{workspaceId}/maintenance/history",
+    "input": {
+      "$ref": "#/components/schemas/HistoryPruneInput"
+    },
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/HistoryPruneResult"
+    }
+  },
+  "createCustomer": {
+    "method": "POST",
+    "path": "/v1/workspaces/{workspaceId}/customers",
+    "input": {
+      "$ref": "#/components/schemas/CustomerInput"
+    },
+    "status": 201,
+    "output": {
+      "$ref": "#/components/schemas/Customer"
+    }
+  },
+  "listCustomers": {
+    "method": "GET",
+    "path": "/v1/workspaces/{workspaceId}/customers",
+    "input": null,
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/CustomerPage"
+    }
+  },
+  "getCustomer": {
+    "method": "GET",
+    "path": "/v1/workspaces/{workspaceId}/customers/{customerId}",
+    "input": null,
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/Customer"
+    }
+  },
+  "replaceCustomer": {
+    "method": "PUT",
+    "path": "/v1/workspaces/{workspaceId}/customers/{customerId}",
+    "input": {
+      "$ref": "#/components/schemas/CustomerInput"
+    },
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/Customer"
+    }
+  },
+  "archiveCustomer": {
+    "method": "POST",
+    "path": "/v1/workspaces/{workspaceId}/customers/{customerId}/archive",
+    "input": {
+      "$ref": "#/components/schemas/Empty"
+    },
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/Customer"
+    }
+  },
+  "eraseCustomer": {
+    "method": "POST",
+    "path": "/v1/workspaces/{workspaceId}/customers/{customerId}/erase",
+    "input": {
+      "$ref": "#/components/schemas/Empty"
+    },
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/CustomerErased"
+    }
+  },
+  "pruneExpiredReplays": {
+    "method": "POST",
+    "path": "/v1/workspaces/{workspaceId}/maintenance/expired-replays",
+    "input": {
+      "$ref": "#/components/schemas/MaintenanceInput"
+    },
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/MaintenanceResult"
+    }
+  },
+  "getPublicPage": {
+    "method": "GET",
+    "path": "/v1/public/pages/{pageId}",
+    "input": null,
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/PublicPage"
+    }
+  },
+  "listPublicOfferings": {
+    "method": "GET",
+    "path": "/v1/public/pages/{pageId}/offerings",
+    "input": null,
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/PublicOfferingPage"
+    }
+  },
+  "publicAvailability": {
+    "method": "GET",
+    "path": "/v1/public/pages/{pageId}/availability",
+    "input": null,
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/Availability"
+    }
+  },
+  "bookPublic": {
+    "method": "POST",
+    "path": "/v1/public/pages/{pageId}/bookings",
+    "input": {
+      "$ref": "#/components/schemas/PublicBookingInput"
+    },
+    "status": 201,
+    "output": {
+      "$ref": "#/components/schemas/PublicBooking"
+    }
+  },
+  "getPublicBooking": {
+    "method": "GET",
+    "path": "/v1/public/pages/{pageId}/bookings/{bookingId}",
+    "input": null,
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/PublicBooking"
+    }
+  },
+  "cancelPublicBooking": {
+    "method": "POST",
+    "path": "/v1/public/pages/{pageId}/bookings/{bookingId}/cancel",
+    "input": {
+      "$ref": "#/components/schemas/Empty"
+    },
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/PublicBooking"
+    }
+  },
+  "reschedulePublicBooking": {
+    "method": "POST",
+    "path": "/v1/public/pages/{pageId}/bookings/{bookingId}/reschedule",
+    "input": {
+      "$ref": "#/components/schemas/RescheduleInput"
+    },
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/PublicBooking"
+    }
+  },
+  "getBookingPage": {
+    "method": "GET",
+    "path": "/v1/workspaces/{workspaceId}/booking-page",
+    "input": null,
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/BookingPageSettings"
+    }
+  },
+  "replaceBookingPage": {
+    "method": "PUT",
+    "path": "/v1/workspaces/{workspaceId}/booking-page",
+    "input": {
+      "$ref": "#/components/schemas/BookingPageInput"
+    },
+    "status": 200,
+    "output": {
+      "$ref": "#/components/schemas/BookingPageSettings"
+    }
+  }
+}

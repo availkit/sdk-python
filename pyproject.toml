@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=77,<83"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "availkit"
+version = "0.2.0"
+description = "Typed, send-once Python SDK for the AvailKit integration and public booking API"
+readme = "README.md"
+requires-python = ">=3.11,<3.16"
+license = "MIT"
+authors = [{name = "AvailKit"}]
+dependencies = []
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3.15",
+  "Typing :: Typed",
+]
+
+[project.urls]
+Documentation = "https://availkit.dev/sdk/python"
+Homepage = "https://availkit.dev"
+Repository = "https://github.com/availkit/sdk-python"
+Issues = "https://github.com/availkit/sdk-python/issues"
+Changelog = "https://github.com/availkit/sdk-python/blob/main/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+availkit = ["py.typed", "schemas.json", "operations.json", "coverage.json"]

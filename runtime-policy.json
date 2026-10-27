@@ -1,0 +1,10 @@
+{
+  "version": "0.2.0",
+  "supported": "CPython3.11\u20133.15; optional sqlite3 for SQLite operation store",
+  "testedBeforeCandidate": [
+    "3.13.9"
+  ],
+  "authority": "34 workspace +7 public operations; Linux local durability; no native human account ceremonies",
+  "releaseEvidence": "https://github.com/availkit/sdk-python/releases/tag/v0.2.0",
+  "verificationScope": "Supported runtimes are compatibility targets. Listed tested toolchains describe finite native checks; installed-consumer, service, mobile and distribution evidence is recorded separately in dated release notes. Source presence does not establish registry availability."
+}
