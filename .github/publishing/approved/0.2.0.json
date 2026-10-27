@@ -1,0 +1,9 @@
+{
+  "ecosystem": "python",
+  "manifest_sha256": "3233b5dcc047a00234b12489e68a80d6a3b56a3ee457538669ab8e7498a7399d",
+  "package": "availkit",
+  "schema": 1,
+  "source_commit": "2492c45020555bb1454951b35774692211513237",
+  "tag": "v0.2.0",
+  "version": "0.2.0"
+}
